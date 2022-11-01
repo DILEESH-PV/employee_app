@@ -1,3 +1,9 @@
+import mysql.connector
+
+mydb=mysql.connector.connect(host='localhost',user='root',password='',database='employeedb')
+
+mycursor=mydb.cursor()
+
 while True:
     print("\nSelect an option")
     print("1 add an employee")
@@ -9,7 +15,19 @@ while True:
     
     ch=int(input("select an option  : \n"))
     if (ch==1):
-        print("selected add employee")
+        emcode=input("Enter the employee code")
+        name=input("Enter the name")
+        des=input("Enter designation")
+        salary=input("Enter the salary")
+        cname=input("Enter the company")
+        mob=input("Enter the phone number")
+        email=input("Enter the email id")
+        password=input("Enter the password")
+        sql='INSERT INTO `employees`(`EmpCode`, `Name`, `Designation`, `Salary`, `CName`, `PhNo`, `Email`, `Password`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)'
+        data=(emcode,name,des,salary,cname,mob,email,password)
+        mycursor.execute(sql,data)
+        mydb.commit()        
+        print("inserted success")
     elif(ch==2):
          print("selected view all employee")
     elif(ch==3):
