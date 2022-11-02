@@ -29,7 +29,12 @@ while True:
         mydb.commit()        
         print("inserted success")
     elif(ch==2):
-         print("selected view all employee")
+        sql='SELECT * FROM `employees`'
+        mycursor.execute(sql)
+        result=mycursor.fetchall()
+        for i in result:
+            print(i)
+        print("selected view all employee")
     elif(ch==3):
         print("selected search employee")
     elif(ch==4):
